@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/chat', {useNewUrlParser: true});
+const url = 'mongodb://localhost/chat';
+const connect = mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  // we're connected!
-});
 
-module.exports = db;
+module.exports = connect;
