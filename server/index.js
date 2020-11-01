@@ -1,13 +1,17 @@
-const app = require('express')();
+const path = require('path');
+const express = require('express');
+const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
 const connect = require('../database/connection.js')
 const Message = require('../database/Message.js');
-
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
+// app.use('/', (req, res, next) => {
+  // console.log(req)
+//   next()
+// });
+app.use('/', express.static(path.join(__dirname, '..',  'client', 'dist')));
+// app.get('/', express.static('/'));
 
 io.on('connection', (socket) => {
 

@@ -1,7 +1,7 @@
 const Message = require('./Message.js');
 
 const logMessage = ({ name, message }, callback = () => {}) => {
-  let hidden = true;
+  let hidden = false;
   let meta = { votes: 0, favs: 0 };
   let date = Date.now();
   let messageObj = new Message({ name, message, hidden, meta })

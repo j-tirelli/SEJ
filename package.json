@@ -4,6 +4,8 @@
   "description": "A social journaling app for engineers and more!",
   "main": "index.js",
   "scripts": {
+    "build": "cd client && webpack",
+    "build:watch": "cd client && webpack --watch",
     "start": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,10 +27,22 @@
   },
   "homepage": "https://github.com/j-tirelli/SEYS#readme",
   "dependencies": {
+    "dayjs": "^1.9.4",
     "express": "^4.17.1",
     "mongoose": "^5.10.11",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.1",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.1.0",
+    "webpack": "^5.3.2",
+    "webpack-cli": "^4.1.0"
   }
 }
