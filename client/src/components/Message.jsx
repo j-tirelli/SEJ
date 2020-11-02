@@ -1,26 +1,28 @@
 import React from 'react';
 import dayjs from 'dayjs';
+import styled from 'styled-components';
+
+const ChatMessage = styled.li`
+  padding: 5px 10px;
+  &:hover {
+    background: #eee;
+  }
+`;
 
 const Message = ({message}) => {
-  debugger
   if (!message.hidden) {
     return (
-      <li className ="message">
+      <ChatMessage className ="message">
         <div>
           <span><strong>{message.user}: </strong></span> {dayjs(message.date).format('h:mm a')}
         </div>
         <div>
           <p>{message.message}</p>
         </div>
-        <div>
-
-        </div>
-      </li>
+      </ChatMessage>
     )
   }
   return null;
 }
-
-// { name, date, message, hidden, meta }
 
 export default Message;

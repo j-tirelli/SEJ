@@ -9,21 +9,14 @@ const mongoose = require('mongoose');
 //   }
 // );
 
-// const metaSchema = new mongoose.Schema(
-//   {
-//     votes: { type: Number },
-//     favs: { type: Number }
-//   }
-// );
-
 const messageSchema = new mongoose.Schema(
   {
     message: { type: String },
     date: { type: Date, default: Date.now },
     hidden: { type: Boolean, default: false },
-    user: { type: String }
+    user: { type: String },
+    votes: { type: Number, default: 0 }
     // user: { type: [userSchema] }
-    // meta: { type: [metaSchema] }
   }
 );
 
