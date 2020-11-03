@@ -18,6 +18,10 @@ const SubmitButtonWrapper = styled.span`
 
 const AddMessage = (props) => {
 
+    // let height = document.getElementById('messages').scrollHeight;
+    // document.getElementById('messages').scrollTo(0,height);
+
+
   const messageHandler = (e) => {
     e.preventDefault();
     let message = e.target[0].value;

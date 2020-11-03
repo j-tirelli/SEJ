@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+var sanitize = require('mongo-sanitize');
 
 const connect = require('../database/connection.js')
 const Message = require('../database/Message.js');
@@ -24,8 +25,9 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chat message', async ({user, message}) => {
-    console.log(message);
     connect.then((db) => {
+      user = sanitize(user);
+      message = sanitize(message);
       let  chatMessage  =  new Message({ user, message });
       chatMessage.save();
       socket.broadcast.emit('new message', chatMessage);

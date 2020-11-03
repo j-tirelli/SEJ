@@ -16,13 +16,18 @@ class MessageList extends React.Component {
   }
 
   componentDidUpdate() {
-    document.getElementById('messages').scrollTo(0,document.body.scrollHeight);
+    // let height = document.getElementById('messages').scrollHeight;
+    // document.getElementById('messages').scrollTo(0,height);
   }
 
   render() {
     let messageList = [];
+    let messageSelection = this.props.messageSelection;
+    let selected = this.props.selected;
+    let chooseUser = this.props.chooseUser;
     this.props.messages.forEach((message) => {
-      messageList.push(<Message key={message._id} message={message} />)
+      // if (selected[message._id])
+      messageList.push(<Message chooseUser={chooseUser} key={message._id} message={message} messageSelection={messageSelection} selected={selected[message._id] !== undefined} />)
     })
 
     return (
