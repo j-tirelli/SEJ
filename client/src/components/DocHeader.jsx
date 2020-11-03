@@ -35,6 +35,6 @@ const DocHeader = ({ docToggle, close, buttonMsg }) => {
       <Button onClick={docToggle}>{buttonMsg}</Button><Close onClick={close}>Remove selected Documents</Close>
     </Wrapper>
   );
-}
+};
 
 export default DocHeader;

@@ -24,7 +24,7 @@ const Docline = ({message, messageSelection}) => {
     <ChatMessage id={'li-' + message._id} className ="message" >
       <RemoveButton onClick={() => clickHandler(messageSelection, message)}>X</RemoveButton>{message.message}
     </ChatMessage>
-  )
-}
+  );
+};
 
 export default Docline;

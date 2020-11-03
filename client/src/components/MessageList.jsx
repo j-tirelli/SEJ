@@ -1,5 +1,5 @@
 import React from 'react';
-import Message from './Message.jsx'
+import Message from './Message.jsx';
 import styled from 'styled-components';
 
 const List = styled.ul`
@@ -27,8 +27,8 @@ class MessageList extends React.Component {
     let chooseUser = this.props.chooseUser;
     this.props.messages.forEach((message) => {
       // if (selected[message._id])
-      messageList.push(<Message chooseUser={chooseUser} key={message._id} message={message} messageSelection={messageSelection} selected={selected[message._id] !== undefined} />)
-    })
+      messageList.push(<Message chooseUser={chooseUser} key={message._id} message={message} messageSelection={messageSelection} selected={selected[message._id] !== undefined} />);
+    });
 
     return (
       <div>
@@ -36,7 +36,7 @@ class MessageList extends React.Component {
           {messageList}
         </List>
       </div>
-    )
+    );
   }
 }
 

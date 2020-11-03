@@ -1,14 +1,14 @@
 import React from 'react';
-import DocLine from './DocLine.jsx'
+import DocLine from './DocLine.jsx';
 import styled from 'styled-components';
 import MarkdownIt from 'markdown-it';
 const md = require('markdown-it')({
-  html:         true,
-  xhtmlOut:     true,
-  breaks:       true,
-  langPrefix:   'language-english',
-  linkify:      true,
-  typographer:  true,
+  html: true,
+  xhtmlOut: true,
+  breaks: true,
+  langPrefix: 'language-english',
+  linkify: true,
+  typographer: true,
 });
 
 const Display = styled.div`
@@ -29,10 +29,10 @@ const Editor = styled.textarea`
 class Document extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       markdown: ''
-    }
+    };
   }
 
   componentDidMount() {
@@ -41,11 +41,10 @@ class Document extends React.Component {
 
   renderMD() {
     let input = $('#editor')[0].value;
-    debugger
     let markdown = md.render(input);
     this.setState({
       markdown
-    })
+    });
   }
 
   createMarkup(markdown) {
@@ -67,7 +66,7 @@ class Document extends React.Component {
           <Display dangerouslySetInnerHTML={this.createMarkup.call(this, this.state.markdown)} ></Display>
         </span>
       </div>
-    )
+    );
   }
 }
 

@@ -12,7 +12,7 @@ const Form = styled.form`
 const clickHandler = (e, changeUser) => {
   let userName = e.currentTarget.children[1].value;
   changeUser(userName);
-}
+};
 
 const Signon = ({ changeUser }) => {
   return (
@@ -23,7 +23,7 @@ const Signon = ({ changeUser }) => {
         <input type="submit" name="submit" value="Login" />
       </Form>
     </div>
-  )
-}
+  );
+};
 
 export default Signon;

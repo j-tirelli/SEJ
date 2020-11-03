@@ -1,9 +1,9 @@
 import React from 'react';
-import MessageList from './MessageList.jsx'
-import AddMessage from './AddMessage.jsx'
-import DocHeader from './DocHeader.jsx'
-import Document from './Document.jsx'
-import Signon from './Signon.jsx'
+import MessageList from './MessageList.jsx';
+import AddMessage from './AddMessage.jsx';
+import DocHeader from './DocHeader.jsx';
+import Document from './Document.jsx';
+import Signon from './Signon.jsx';
 
 
 class App extends React.Component {
@@ -14,7 +14,7 @@ class App extends React.Component {
       messages: [],
       selected: {},
       user: 'John'
-    }
+    };
   }
 
   submitHandler(message) {
@@ -54,15 +54,15 @@ class App extends React.Component {
   }
 
   docToggle() {
-    this.setState({docOn: !this.state.docOn })
+    this.setState({docOn: !this.state.docOn });
   }
 
   closeSelection() {
-    this.setState({docOn: false, selected: {} })
+    this.setState({docOn: false, selected: {} });
   }
 
   changeUser(user) {
-    this.setState({ user })
+    this.setState({ user });
   }
 
   chooseUser(user) {
@@ -92,17 +92,16 @@ class App extends React.Component {
           <MessageList chooseUser={this.chooseUser.bind(this)} messageSelection={this.messageSelected.bind(this)} messages={this.state.messages} selected={this.state.selected} />
           <AddMessage submitHandler={this.submitHandler.bind(this)}/>
         </div>
-      )
+      );
     } else {
       return (
         <div>
           <MessageList chooseUser={this.chooseUser.bind(this)} messageSelection={this.messageSelected.bind(this)} messages={this.state.messages} selected={this.state.selected} />
           <AddMessage submitHandler={this.submitHandler.bind(this)}/>
         </div>
-      )
+      );
     }
   }
-
 }
 
 export default App;
