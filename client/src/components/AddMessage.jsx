@@ -18,8 +18,6 @@ const SubmitButtonWrapper = styled.span`
 
 const AddMessage = (props) => {
 
-  // let height = document.getElementById('messages').scrollHeight;
-  // document.getElementById('messages').scrollTo(0,height);
 
 
   const messageHandler = (e) => {
@@ -27,6 +25,10 @@ const AddMessage = (props) => {
     let message = e.target[0].value;
     e.target[0].value = '';
     props.submitHandler(message);
+    setTimeout(() => {
+      let height = document.getElementById('messages').scrollHeight;
+      document.getElementById('messages').scrollTo(0, height);
+    }, 50);
   };
 
   return (

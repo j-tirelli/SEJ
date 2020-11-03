@@ -16,6 +16,7 @@ const Display = styled.div`
   min-height: 60vh;
   max-height: 80vh;
   padding: 20px;
+  text-align: left;
 `;
 
 const Editor = styled.textarea`
@@ -31,7 +32,8 @@ class Document extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      markdown: ''
+      markdown: '',
+      file: {}
     };
   }
 
@@ -42,8 +44,11 @@ class Document extends React.Component {
   renderMD() {
     let input = $('#editor')[0].value;
     let markdown = md.render(input);
+    var blob = new Blob([input], { type: 'text/plain' });
+    var file = window.URL.createObjectURL(blob);
     this.setState({
-      markdown
+      markdown,
+      file
     });
   }
 
@@ -62,8 +67,9 @@ class Document extends React.Component {
         <span style={{ float: 'left', width: '50%' }}>
           <Editor onChange={this.renderMD.bind(this)} defaultValue={textList} id='editor'></Editor>
         </span>
-        <span style={{ float: 'right', width: '50%' }}>
+        <span style={{ float: 'right', width: '50%', textAlign: 'right' }}>
           <Display dangerouslySetInnerHTML={this.createMarkup.call(this, this.state.markdown)} ></Display>
+          <a download href={this.state.file}>Download</a>
         </span>
       </div>
     );
