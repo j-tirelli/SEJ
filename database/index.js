@@ -25,6 +25,18 @@ const GetAllMessages = () => {
     .catch(logErrorToConsole);
 };
 
+const SaveMessage = (_id, message, user) => {
+  let chatMessage = new Message({
+    user: _id,
+    message
+  });
+  return chatMessage.save()
+    .then(({ _doc }) => {
+      return {user, _doc};
+    })
+    .catch(logErrorToConsole);
+};
+
 const logErrorToConsole = (error) => {
   console.error(error);
 };
@@ -32,5 +44,6 @@ const logErrorToConsole = (error) => {
 module.exports = {
   Login,
   GetAllMessages,
-  logErrorToConsole
+  logErrorToConsole,
+  SaveMessage
 };

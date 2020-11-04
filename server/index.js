@@ -6,7 +6,7 @@ const io = require('socket.io')(http);
 var sanitize = require('mongo-sanitize');
 
 const connect = require('../database/connection.js');
-const { Login, GetAllMessages, logErrorToConsole } = require('../database/index.js');
+const { Login, GetAllMessages, SaveMessage, logErrorToConsole } = require('../database/index.js');
 // const { User } = require('../database/User.js');
 
 app.use(express.json());
@@ -47,17 +47,16 @@ io.on('connection', (socket) => {
 
 
   socket.on('chat message', async ({user, message}) => {
-    debugger;
     connect.then((db) => {
-      debugger;
       _id = sanitize(user.userId);
       message = sanitize(message);
-      let chatMessage = new Message({
-        user: _id,
-        message
-      });
-      chatMessage.save();
-      socket.broadcast.emit('new message', chatMessage);
+      SaveMessage(_id, message, user)
+        .then(({ user, _doc }) => {
+          _doc.user = user;
+          socket.emit('new message', _doc);
+          socket.broadcast.emit('new message', _doc);
+        })
+        .catch(logErrorToConsole);
     });
   });
 
