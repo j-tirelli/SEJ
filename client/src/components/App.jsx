@@ -5,6 +5,7 @@ import DocHeader from './DocHeader.jsx';
 import Document from './Document.jsx';
 import Signon from './Signon.jsx';
 
+window.socket = io();
 
 class App extends React.Component {
   constructor(props) {
@@ -13,13 +14,15 @@ class App extends React.Component {
       docOn: false,
       messages: [],
       selected: {},
-      user: 'John'
+      user: {
+        name: '',
+        usedId: ''
+      }
     };
   }
 
   submitHandler(message) {
     let user = this.state.user;
-    var socket = io();
     socket.emit('chat message', {message, user});
   }
 
@@ -47,10 +50,23 @@ class App extends React.Component {
     }
   }
 
+  login(userId, anything, Else) {
+    console.log('Login Succesful!');
+    console.log(userId, anything, Else);
+    this.changeUser(this.state.user.name, userId);
+  }
+
+  whatsGoingOn(userId, anything, Else) {
+    debugger;
+    console.log('Login Succesful!');
+    console.log(userId, anything, Else);
+  }
+
   componentDidMount() {
-    var socket = io();
     socket.on('Channel Messages', this.messagePopulator.bind(this));
     socket.on('new message', this.addNewMessage.bind(this));
+    socket.on('logged in', this.login.bind(this));
+    // socket.on('hello', this.whatsGoingOn.bind(this));
   }
 
   docToggle() {
@@ -61,8 +77,13 @@ class App extends React.Component {
     this.setState({docOn: false, selected: {} });
   }
 
-  changeUser(user) {
-    this.setState({ user });
+  changeUser(name, userId = '') {
+    this.setState({
+      user: {
+        name,
+        userId
+      }
+    });
   }
 
   chooseUser(user) {
@@ -76,7 +97,7 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.user === '') {
+    if (this.state.user.name === '') {
       return <Signon changeUser={this.changeUser.bind(this)} />;
     } else if (this.state.docOn) {
       return (

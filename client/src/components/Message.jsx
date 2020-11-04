@@ -26,7 +26,7 @@ const Message = ({message, messageSelection, selected, chooseUser }) => {
   if (!message.hidden) {
     return (
       <ChatMessage id={'li-' + message._id} className ="message" onClick={(e) => clickHandler(e, messageSelection, message)} selected={selected}>
-        <span onClick={(e) => clickUser(e, message.user, chooseUser)}><strong>{message.user}: </strong></span> {dayjs(message.date).format('h:mm a')}<p>{message.message}</p>
+        <span onClick={(e) => clickUser(e, message.user.name, chooseUser)}><strong>{message.user.name}: </strong></span> {dayjs(message.date).format('h:mm a')}<p>{message.message}</p>
       </ChatMessage>
     );
   }

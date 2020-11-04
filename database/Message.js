@@ -1,24 +1,16 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-
-// const userSchema = new mongoose.Schema(
-//   {
-//     name: { name: String }
-//     joinDate: { type: Date, default: Date.now },
-//     hidden: { type: Boolean, default: false },
-//   }
-// );
-
-const messageSchema = new mongoose.Schema(
-  {
-    message: { type: String },
-    date: { type: Date, default: Date.now },
-    hidden: { type: Boolean, default: false },
-    user: { type: String },
-    votes: { type: Number, default: 0 }
-    // user: { type: [userSchema] }
+const messageSchema = new Schema({
+  message: { type: String },
+  date: { type: Date, default: Date.now },
+  hidden: { type: Boolean, default: false },
+  votes: { type: Number, default: 0 },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
-);
+});
 
 const Message = mongoose.model('Message', messageSchema);
 
