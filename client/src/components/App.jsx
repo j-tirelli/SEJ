@@ -17,13 +17,20 @@ class App extends React.Component {
       user: {
         name: '',
         usedId: ''
-      }
+      },
+      pmTarget: ''
     };
   }
 
   submitHandler(message) {
     let user = this.state.user;
-    socket.emit('chat message', {message, user});
+    let pmTarget = this.state.pmTarget;
+    if (pmTarget !== '') {
+      socket.emit('private message', {pmTarget, message, user});
+      this.setState({ pmTarget: ''});
+    } else {
+      socket.emit('chat message', {message, user});
+    }
   }
 
   addNewMessage (message) {
@@ -96,6 +103,10 @@ class App extends React.Component {
     this.setState({ selected });
   }
 
+  privateMessage(pmTarget) {
+    this.setState({ pmTarget });
+  }
+
   render() {
     if (this.state.user.name === '') {
       return <Signon changeUser={this.changeUser.bind(this)} />;
@@ -110,14 +121,14 @@ class App extends React.Component {
       return (
         <div>
           <DocHeader docToggle={this.docToggle.bind(this)} close={this.closeSelection.bind(this)} buttonMsg='Create Document from selected Chats'/>
-          <MessageList chooseUser={this.chooseUser.bind(this)} messageSelection={this.messageSelected.bind(this)} messages={this.state.messages} selected={this.state.selected} />
+          <MessageList pmUser={this.privateMessage.bind(this)} chooseUser={this.chooseUser.bind(this)} messageSelection={this.messageSelected.bind(this)} messages={this.state.messages} selected={this.state.selected} />
           <AddMessage submitHandler={this.submitHandler.bind(this)}/>
         </div>
       );
     } else {
       return (
         <div>
-          <MessageList chooseUser={this.chooseUser.bind(this)} messageSelection={this.messageSelected.bind(this)} messages={this.state.messages} selected={this.state.selected} />
+          <MessageList pmUser={this.privateMessage.bind(this)} chooseUser={this.chooseUser.bind(this)} messageSelection={this.messageSelected.bind(this)} messages={this.state.messages} selected={this.state.selected} />
           <AddMessage submitHandler={this.submitHandler.bind(this)}/>
         </div>
       );

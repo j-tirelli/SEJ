@@ -25,9 +25,10 @@ class MessageList extends React.Component {
     let messageSelection = this.props.messageSelection;
     let selected = this.props.selected;
     let chooseUser = this.props.chooseUser;
+    let pmUser = this.props.pmUser;
     this.props.messages.forEach((message) => {
       // if (selected[message._id])
-      messageList.push(<Message chooseUser={chooseUser} key={message._id} message={message} messageSelection={messageSelection} selected={selected[message._id] !== undefined} />);
+      messageList.push(<Message pmUser={pmUser} chooseUser={chooseUser} key={message._id} message={message} messageSelection={messageSelection} selected={selected[message._id] !== undefined} />);
     });
 
     return (

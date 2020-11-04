@@ -24,11 +24,12 @@ const AddMessage = (props) => {
     e.preventDefault();
     let message = e.target[0].value;
     e.target[0].value = '';
+    debugger;
     props.submitHandler(message);
     setTimeout(() => {
       let height = document.getElementById('messages').scrollHeight;
       document.getElementById('messages').scrollTo(0, height);
-    }, 50);
+    }, 100);
   };
 
   return (
