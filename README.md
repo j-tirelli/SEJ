@@ -1,5 +1,7 @@
 # Social Notes
-Taking notes is a drag, so we made it easy! Social note-taking results in documents that contain more detail and are enriched by nuances in understanding from diverse sources.
+Taking notes is a drag, so we made it easy!
+
+Social note-taking results in documents that contain more detail and are enriched by nuances in understanding from diverse sources.
 
  > Social Notes - Greater understanding through crowd-sharing.
 
