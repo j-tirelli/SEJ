@@ -5,17 +5,13 @@ Taking notes is a drag, so we made it easy! Social note-taking results in docume
 
 ## Table of Contents
 
-1. [Usage](#Usage)
+1. [Usage](#usage)
 1. [Requirements](#requirements)
 1. [Installation](#installation)
+1. [Scripts](#scripts)
 
 ## Usage
 > After installation, use npm start to run the server and navigate to htttp://localhost:<your port> (default: 3000)
-
-## Scripts
-From within the root folder:
-- npm run build - run webpack to create a bundle.js file.
-
 
 ## Requirements
 
@@ -29,7 +25,6 @@ From within the root folder:
 - socket.io
 - styled-components
 
-
 ### Installation
 
 From within the root directory:
@@ -38,3 +33,7 @@ From within the root directory:
 1. npm install
 1. npm start
 ```
+
+## Scripts
+From within the root folder:
+- npm run build - run webpack to create a bundle.js file.
